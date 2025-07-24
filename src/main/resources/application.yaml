@@ -1,0 +1,27 @@
+server:
+  port: 9191
+spring:
+  name: toDo-List
+  datasource:
+    url: jdbc:postgresql://localhost:5432/todolist
+    username: postgres
+    password: eryck@3003
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update   # Pode ser none, validate, update, create, create-drop
+    show-sql: true      # Mostra as queries no console
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enable: true
+  output:
+    ansi:
+      enabled: ALWAYS
+logging:
+  level:
+    root: INFO
+    org.hibernate.orm.connections.pooling: OFF
+  pattern:
+    console: "%clr(%d{dd/MM/yyyy HH:mm:ss}){green} | %clr([%thread]){magenta} | %clr(%-5level){faint} | %clr(%-50.50logger){cyan} | %clr(%msg%n){yellow}"
