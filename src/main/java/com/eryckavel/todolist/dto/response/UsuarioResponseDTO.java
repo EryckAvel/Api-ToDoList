@@ -1,36 +1,30 @@
-package com.eryckavel.todolist.model;
+package com.eryckavel.todolist.dto.response;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
+import com.eryckavel.todolist.model.Usuario;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "usuario")
-public class Usuario {
+public class UsuarioResponseDTO {
 
-    @Id
-    @Column(name = "idusuario")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
-    @Column(unique = true)
     private String login;
     private String senha;
-    @CreationTimestamp
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime criadoEm;
 
-    public Usuario() {
+    public UsuarioResponseDTO() {
     }
 
-    public Usuario(Long id, String nome, String email, String login, String senha, LocalDateTime criadoEm) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.login = login;
-        this.senha = senha;
-        this.criadoEm = criadoEm;
+    public UsuarioResponseDTO(Usuario usuario) {
+        this.id = usuario.getId();
+        this.nome = usuario.getNome();
+        this.email = usuario.getEmail();
+        this.login = usuario.getLogin();
+        this.senha = usuario.getSenha();
+        this.criadoEm = usuario.getCriadoEm();
     }
 
     public Long getId() {
