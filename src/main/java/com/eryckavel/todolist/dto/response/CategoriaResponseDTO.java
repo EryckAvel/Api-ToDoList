@@ -1,31 +1,27 @@
-package com.eryckavel.todolist.model;
+package com.eryckavel.todolist.dto.response;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
+import com.eryckavel.todolist.model.Categoria;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "categoria")
-public class Categoria {
+public class CategoriaResponseDTO {
 
-    @Id
-    @Column(name = "idcategoria")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String descricao;
-    @CreationTimestamp
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime criadoEm;
 
-    public Categoria() {
+    public CategoriaResponseDTO(Long id) {
+        this.id = id;
     }
 
-    public Categoria(Long id, String nome, String descricao, LocalDateTime criadoEm) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.criadoEm = criadoEm;
+    public CategoriaResponseDTO(Categoria categoria) {
+        this.id = categoria.getId();
+        this.nome = categoria.getNome();
+        this.descricao = categoria.getDescricao();
+        this.criadoEm = categoria.getCriadoEm();
     }
 
     public Long getId() {
@@ -59,5 +55,4 @@ public class Categoria {
     public void setCriadoEm(LocalDateTime criadoEm) {
         this.criadoEm = criadoEm;
     }
-
 }

@@ -1,5 +1,7 @@
 server:
   port: 9191
+  servlet:
+    context-path: /api
 spring:
   name: toDo-List
   datasource:
@@ -9,8 +11,8 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update   # Pode ser none, validate, update, create, create-drop
-    show-sql: true      # Mostra as queries no console
+      ddl-auto: update # Pode ser none, validate, update, create, create-drop
+    show-sql: true # Mostra as queries no console
     properties:
       hibernate:
         format_sql: true
@@ -22,4 +24,4 @@ logging:
     root: INFO
     org.hibernate.orm.connections.pooling: OFF
   pattern:
-    console: "%clr(%d{dd/MM/yyyy HH:mm:ss.SSS}){blue} %clr([%1.15t]){magenta} - %clr(%-5level){highlight} - %clr([%30.30logger{29}]){cyan} %clr(→){white} %clr(%msg){yellow}%n%clr(%ex){red bold}"
+    console: "%clr(%d{dd/MM/yyyy HH:mm:ss.SSS}){blue} %clr([%1.15t]){magenta} - %clr(%-5level){highlight} - %clr([%-30.30logger{29}]){cyan} %clr(→){white} %clr(%msg){yellow}%n%clr(%ex){red bold}"

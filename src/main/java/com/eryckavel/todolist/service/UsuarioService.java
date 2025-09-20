@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class UsuarioService implements BaseService<UsuarioRequestDTO, UsuarioResponseDTO, Usuario> {
 
-    private UsuarioRepository repository;
+    private final UsuarioRepository repository;
 
     public UsuarioService(UsuarioRepository repository) {
         this.repository = repository;
@@ -21,8 +21,7 @@ public class UsuarioService implements BaseService<UsuarioRequestDTO, UsuarioRes
     @Override
     public List<UsuarioResponseDTO> listar() {
         List<Usuario> entidades = repository.findAll();
-        List<UsuarioResponseDTO> dtos = entidades.stream().map(UsuarioResponseDTO::new).toList();
-        return dtos;
+        return entidades.stream().map(UsuarioResponseDTO::new).toList();
     }
 
     @Override
