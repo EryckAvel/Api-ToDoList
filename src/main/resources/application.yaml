@@ -5,17 +5,24 @@ server:
 spring:
   name: toDo-List
   datasource:
-    url: jdbc:postgresql://localhost:5432/todolist
-    username: postgres
-    password: eryck@3003
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/todolist}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:eryck@3003}
     driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true                    # ← Liga o Flyway
+    locations: classpath:db/migration # ← Pasta das migrations
+    baseline-on-migrate: true        # ← Permite banco existente
+    validate-on-migrate: true        # ← Valida antes de aplicar
+    clean-disabled: true             # ← Impede flyway:clean (segurança)
+    out-of-order: false
   jpa:
     hibernate:
-      ddl-auto: update # Pode ser none, validate, update, create, create-drop
-    show-sql: true # Mostra as queries no console
+      ddl-auto: validate # Pode ser none, validate, update, create, create-drop
+    show-sql: false # Mostra as queries no console
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
   output:
     ansi:
       enabled: ALWAYS
