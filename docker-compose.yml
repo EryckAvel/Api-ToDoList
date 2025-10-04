@@ -26,7 +26,7 @@ services:
       # Configurações do banco (sobrescreve o application.yml)
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/todolist
       SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: eryck@3003
+      SPRING_DATASOURCE_PASSWORD: teste@123
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
     networks:
       - todolist-network
