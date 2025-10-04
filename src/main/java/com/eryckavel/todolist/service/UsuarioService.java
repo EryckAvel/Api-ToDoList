@@ -5,17 +5,20 @@ import com.eryckavel.todolist.dto.response.UsuarioResponseDTO;
 import com.eryckavel.todolist.model.Usuario;
 import com.eryckavel.todolist.repository.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UsuarioService implements BaseService<UsuarioRequestDTO, UsuarioResponseDTO, Usuario> {
+public class UsuarioService implements BaseService<UsuarioRequestDTO, UsuarioResponseDTO, Usuario>{
 
     private final UsuarioRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UsuarioService(UsuarioRepository repository) {
+    public UsuarioService(UsuarioRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -53,7 +56,7 @@ public class UsuarioService implements BaseService<UsuarioRequestDTO, UsuarioRes
         entidade.setNome(dto.getNome());
         entidade.setEmail(dto.getEmail());
         entidade.setLogin(dto.getLogin());
-        entidade.setSenha(dto.getSenha());
+        entidade.setSenha(passwordEncoder.encode(dto.getSenha()));
     }
 
     @Override

@@ -56,12 +56,8 @@ public class CategoriaService implements BaseService<CategoriaRequestDTO, Catego
 
     @Override
     public void converterEntidadeUpdate(Categoria entidade, CategoriaRequestDTO dto) {
-        if(dto.getNome() != null){
-            entidade.setNome(dto.getNome());
-        }
-        if (dto.getDescricao() != null) {
-            entidade.setDescricao(dto.getDescricao());
-        }
+        if (dto.getNome() != null) entidade.setNome(dto.getNome());
+        if (dto.getDescricao() != null) entidade.setDescricao(dto.getDescricao());
     }
 
 }

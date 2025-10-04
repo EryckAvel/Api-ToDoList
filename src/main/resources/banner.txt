@@ -6,11 +6,11 @@ ${AnsiColor.CYAN}
    ██║   ╚██████╔╝╚██████╔╝███████╗██║███████║   ██║
    ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚═╝╚══════╝   ╚═╝
 ${AnsiColor.GREEN}
-================================================================
+════════════════════════════════════════════════════════════════
   Spring Boot Application Starting...
   Version: ${spring-boot.version}
   Java: ${java.version}
   Profile: ${spring.profiles.active:default}
   API Base URL: http://localhost:${server.port:8080}${server.servlet.context-path:}
-================================================================
+════════════════════════════════════════════════════════════════
 ${AnsiColor.DEFAULT}
