@@ -3,6 +3,7 @@ package com.eryckavel.todolist.controller;
 import com.eryckavel.todolist.dto.request.ComentarioRequestDTO;
 import com.eryckavel.todolist.dto.response.ComentarioResponseDTO;
 import com.eryckavel.todolist.service.ComentarioService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/comentario")
+@Tag(name = "Comentario")
 public class ComentarioController {
 
     private final ComentarioService service;

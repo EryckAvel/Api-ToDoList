@@ -3,6 +3,7 @@ package com.eryckavel.todolist.controller;
 import com.eryckavel.todolist.dto.request.UsuarioRequestDTO;
 import com.eryckavel.todolist.dto.response.UsuarioResponseDTO;
 import com.eryckavel.todolist.service.UsuarioService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/usuario")
+@Tag(name = "Usuario")
 public class UsuarioController {
 
     private final UsuarioService service;

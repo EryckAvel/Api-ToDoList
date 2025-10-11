@@ -5,9 +5,9 @@ server:
 spring:
   name: toDo-List
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL:url}
+    username: ${SPRING_DATASOURCE_USERNAME:username}
+    password: ${SPRING_DATASOURCE_PASSWORD:password}
     driver-class-name: org.postgresql.Driver
   flyway:
     enabled: true                    # ← Liga o Flyway
@@ -33,6 +33,18 @@ logging:
     org.hibernate.orm.connections.pooling: OFF
   pattern:
     console: "%clr(%d{dd/MM/yyyy HH:mm:ss.SSS}){blue} %clr([%1.15t]){magenta} - %clr(%-5level){highlight} - %clr([%-30.30logger{29}]){cyan} %clr(→){white} %clr(%msg){yellow}%n%clr(%ex){red bold}"
-jwt:
-  secret: ${JWT_SECRET:secret_key}
-  expiration: ${JWT_EXPIRATION:86400000}
+springdoc:
+  enable-hateoas: true
+  api-docs:
+    path: /api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    layout: StandaloneLayout
+    operationsSorter: method
+    tagsSorter: alpha
+    disable-swagger-default-url: true
+    display-request-duration: true
+    docExpansion: none
+    tryItOutEnabled: true
