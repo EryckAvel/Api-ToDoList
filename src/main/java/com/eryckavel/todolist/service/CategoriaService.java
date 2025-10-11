@@ -4,17 +4,20 @@ import com.eryckavel.todolist.dto.request.CategoriaRequestDTO;
 import com.eryckavel.todolist.dto.response.CategoriaResponseDTO;
 import com.eryckavel.todolist.model.Categoria;
 import com.eryckavel.todolist.repository.CategoriaRepository;
+import com.eryckavel.todolist.repository.UsuarioRepository;
+import com.eryckavel.todolist.util.JwtUtil;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CategoriaService implements BaseService<CategoriaRequestDTO, CategoriaResponseDTO, Categoria>{
+public class CategoriaService extends BaseService<CategoriaRequestDTO, CategoriaResponseDTO, Categoria>{
 
     private final CategoriaRepository repository;
 
-    public CategoriaService(CategoriaRepository repository) {
+    public CategoriaService(JwtUtil jwtUtil, UsuarioRepository usuarioRepository, CategoriaRepository repository) {
+        super(jwtUtil, usuarioRepository);
         this.repository = repository;
     }
 

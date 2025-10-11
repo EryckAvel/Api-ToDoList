@@ -8,26 +8,25 @@ import com.eryckavel.todolist.model.Usuario;
 import com.eryckavel.todolist.repository.CategoriaRepository;
 import com.eryckavel.todolist.repository.TarefaRepository;
 import com.eryckavel.todolist.repository.UsuarioRepository;
+import com.eryckavel.todolist.util.JwtUtil;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class TarefaService implements BaseService<TarefaRequestDTO, TarefaResponseDTO, Tarefa>{
+public class TarefaService extends BaseService<TarefaRequestDTO, TarefaResponseDTO, Tarefa>{
 
     private final TarefaRepository repository;
     private final UsuarioRepository usuarioRepository;
     private final CategoriaRepository categoriaRepository;
 
-    public TarefaService(TarefaRepository repository,
-                         UsuarioRepository usuarioRepository,
-                         CategoriaRepository categoriaRepository) {
+    public TarefaService(JwtUtil jwtUtil, UsuarioRepository usuarioRepository, TarefaRepository repository, UsuarioRepository usuarioRepository1, CategoriaRepository categoriaRepository) {
+        super(jwtUtil, usuarioRepository);
         this.repository = repository;
-        this.usuarioRepository = usuarioRepository;
+        this.usuarioRepository = usuarioRepository1;
         this.categoriaRepository = categoriaRepository;
     }
-
 
     @Override
     public List<TarefaResponseDTO> listar() {

@@ -4,6 +4,7 @@ import com.eryckavel.todolist.dto.request.UsuarioRequestDTO;
 import com.eryckavel.todolist.dto.response.UsuarioResponseDTO;
 import com.eryckavel.todolist.model.Usuario;
 import com.eryckavel.todolist.repository.UsuarioRepository;
+import com.eryckavel.todolist.util.JwtUtil;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,12 +12,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UsuarioService implements BaseService<UsuarioRequestDTO, UsuarioResponseDTO, Usuario>{
+public class UsuarioService extends BaseService<UsuarioRequestDTO, UsuarioResponseDTO, Usuario>{
 
     private final UsuarioRepository repository;
     private final PasswordEncoder passwordEncoder;
 
-    public UsuarioService(UsuarioRepository repository, PasswordEncoder passwordEncoder) {
+    public UsuarioService(JwtUtil jwtUtil, UsuarioRepository usuarioRepository, UsuarioRepository repository, PasswordEncoder passwordEncoder) {
+        super(jwtUtil, usuarioRepository);
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
     }
