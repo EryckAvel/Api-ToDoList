@@ -6,18 +6,22 @@ import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SwaggerConfig {
 
+    @Value("${spring.version}")
+    private String version;
+
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
                         .title("TodoList API")
-                        .version("1.0.0")
+                        .version(version)
                         .description("API para gerenciamento de tarefas")
                         .contact(new Contact()
                                 .name("Eryck Calisto Avelino")

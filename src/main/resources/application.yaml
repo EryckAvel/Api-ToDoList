@@ -4,6 +4,7 @@ server:
     context-path: /api
 spring:
   name: toDo-List
+  version: @project.version@
   datasource:
     url: ${SPRING_DATASOURCE_URL:url}
     username: ${SPRING_DATASOURCE_USERNAME:username}
@@ -39,7 +40,7 @@ springdoc:
     path: /api-docs
     enabled: true
   swagger-ui:
-    path: /swagger-ui.html
+    path: /docs
     enabled: true
     layout: StandaloneLayout
     operationsSorter: method
