@@ -4,7 +4,6 @@ server:
     context-path: /api
 spring:
   name: toDo-List
-  version: @project.version@
   datasource:
     url: ${SPRING_DATASOURCE_URL:url}
     username: ${SPRING_DATASOURCE_USERNAME:username}
@@ -20,7 +19,7 @@ spring:
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: validate # Pode ser none, validate, update, create, create-drop
+      ddl-auto: none # Pode ser none, validate, update, create, create-drop
     show-sql: false # Mostra as queries no console
     properties:
       hibernate:
@@ -49,3 +48,5 @@ springdoc:
     display-request-duration: true
     docExpansion: none
     tryItOutEnabled: true
+api:
+  version: @project.version@

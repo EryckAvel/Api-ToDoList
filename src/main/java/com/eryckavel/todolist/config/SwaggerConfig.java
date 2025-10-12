@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SwaggerConfig {
 
-    @Value("${spring.version}")
+    @Value("${api.version}")
     private String version;
 
     @Bean

@@ -5,9 +5,9 @@ services:
     image: postgres:17-alpine
     container_name: todolist-db
     environment:
-      POSTGRES_DB: todolist
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: eryck@3003
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
@@ -23,11 +23,12 @@ services:
     ports:
       - "9191:9191"
     environment:
-      # Configurações do banco (sobrescreve o application.yml)
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/todolist
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: teste@123
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION: ${JWT_EXPIRATION}
     networks:
       - todolist-network
 
