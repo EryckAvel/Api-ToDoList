@@ -60,18 +60,18 @@ public class TarefaService extends BaseService<TarefaRequestDTO, TarefaResponseD
 
     @Override
     public void converterEntidade(Tarefa entidade, TarefaRequestDTO dto) {
-        entidade.setTitulo(dto.getTitulo());
-        entidade.setDescricao(dto.getDescricao());
-        entidade.setStatus(dto.getStatus());
-        entidade.setPrioridade(dto.getPrioridade());
-        entidade.setDataLimite(dto.getDataLimite());
-        if (dto.getIdUsuario() != null){
-            Usuario usuario = usuarioRepository.findById(dto.getIdUsuario())
+        entidade.setTitulo(dto.titulo());
+        entidade.setDescricao(dto.descricao());
+        entidade.setStatus(dto.status());
+        entidade.setPrioridade(dto.prioridade());
+        entidade.setDataLimite(dto.dataLimite());
+        if (dto.idUsuario() != null){
+            Usuario usuario = usuarioRepository.findById(dto.idUsuario())
                     .orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado!"));
             entidade.setUsuario(usuario);
         }
-        if (dto.getIdCategoria() != null){
-            Categoria categoria = categoriaRepository.findById(dto.getIdCategoria())
+        if (dto.idCategoria() != null){
+            Categoria categoria = categoriaRepository.findById(dto.idCategoria())
                     .orElseThrow(() -> new EntityNotFoundException("Categoria não encontrada!"));
             entidade.setCategoria(categoria);
         }
@@ -79,18 +79,18 @@ public class TarefaService extends BaseService<TarefaRequestDTO, TarefaResponseD
 
     @Override
     public void converterEntidadeUpdate(Tarefa entidade, TarefaRequestDTO dto) {
-        if (dto.getTitulo() != null) entidade.setTitulo(dto.getTitulo());
-        if (dto.getDescricao() != null) entidade.setDescricao(dto.getDescricao());
-        if (dto.getStatus() != null) entidade.setStatus(dto.getStatus());
-        if (dto.getPrioridade() != null) entidade.setPrioridade(dto.getPrioridade());
-        if (dto.getDataLimite() != null) entidade.setDataLimite(dto.getDataLimite());
-        if (dto.getIdUsuario() != null){
-            Usuario usuario = usuarioRepository.findById(dto.getIdUsuario())
+        if (dto.titulo() != null) entidade.setTitulo(dto.titulo());
+        if (dto.descricao() != null) entidade.setDescricao(dto.descricao());
+        if (dto.status() != null) entidade.setStatus(dto.status());
+        if (dto.prioridade() != null) entidade.setPrioridade(dto.prioridade());
+        if (dto.dataLimite() != null) entidade.setDataLimite(dto.dataLimite());
+        if (dto.idUsuario() != null){
+            Usuario usuario = usuarioRepository.findById(dto.idUsuario())
                     .orElseThrow(() -> new EntityNotFoundException("Usuario não encontrado!"));
             entidade.setUsuario(usuario);
         }
-        if (dto.getIdCategoria() != null){
-            Categoria categoria = categoriaRepository.findById(dto.getIdCategoria())
+        if (dto.idCategoria() != null){
+            Categoria categoria = categoriaRepository.findById(dto.idCategoria())
                     .orElseThrow(() -> new EntityNotFoundException("Categoria não encontrada!"));
             entidade.setCategoria(categoria);
         }

@@ -5,7 +5,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
-public record ComentarioResponseDTO(Long id, Long idUsuario, Long idTarefa, String conteudo,@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime criadoEm) {
+public record ComentarioResponseDTO(
+        Long id,
+        Long idUsuario,
+        Long idTarefa,
+        String conteudo,
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDateTime criadoEm
+) {
 
     public ComentarioResponseDTO(Comentario comentario) {
         this(

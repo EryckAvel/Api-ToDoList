@@ -53,14 +53,14 @@ public class CategoriaService extends BaseService<CategoriaRequestDTO, Categoria
 
     @Override
     public void converterEntidade(Categoria entidade, CategoriaRequestDTO dto) {
-        entidade.setNome(dto.getNome());
-        entidade.setDescricao(dto.getDescricao());
+        entidade.setNome(dto.nome());
+        entidade.setDescricao(dto.descricao());
     }
 
     @Override
     public void converterEntidadeUpdate(Categoria entidade, CategoriaRequestDTO dto) {
-        if (dto.getNome() != null) entidade.setNome(dto.getNome());
-        if (dto.getDescricao() != null) entidade.setDescricao(dto.getDescricao());
+        if (dto.nome() != null) entidade.setNome(dto.nome());
+        if (dto.descricao() != null) entidade.setDescricao(dto.descricao());
     }
 
 }

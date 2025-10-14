@@ -55,18 +55,18 @@ public class UsuarioService extends BaseService<UsuarioRequestDTO, UsuarioRespon
 
     @Override
     public void converterEntidade(Usuario entidade, UsuarioRequestDTO dto) {
-        entidade.setNome(dto.getNome());
-        entidade.setEmail(dto.getEmail());
-        entidade.setLogin(dto.getLogin());
-        entidade.setSenha(passwordEncoder.encode(dto.getSenha()));
+        entidade.setNome(dto.nome());
+        entidade.setEmail(dto.email());
+        entidade.setLogin(dto.login());
+        entidade.setSenha(passwordEncoder.encode(dto.senha()));
     }
 
     @Override
     public void converterEntidadeUpdate(Usuario entidade, UsuarioRequestDTO dto) {
-        if (dto.getNome() != null) entidade.setNome(dto.getNome());
-        if (dto.getEmail() != null) entidade.setEmail(dto.getEmail());
-        if (dto.getLogin() != null) entidade.setLogin(dto.getLogin());
-        if (dto.getSenha() != null) entidade.setSenha(dto.getSenha());
+        if (dto.nome() != null) entidade.setNome(dto.nome());
+        if (dto.email() != null) entidade.setEmail(dto.email());
+        if (dto.login() != null) entidade.setLogin(dto.login());
+        if (dto.senha() != null) entidade.setSenha(dto.senha());
     }
 
 
