@@ -12,5 +12,6 @@ ${AnsiColor.GREEN}
   Java: ${java.version}
   Profile: ${spring.profiles.active:default}
   API Base URL: http://localhost:${server.port:8080}${server.servlet.context-path:}
+  API Documentation: http://localhost:${server.port:8080}${server.servlet.context-path:}/docs
 ════════════════════════════════════════════════════════════════
 ${AnsiColor.DEFAULT}

@@ -27,6 +27,12 @@ public class CategoriaService extends BaseService<CategoriaRequestDTO, Categoria
         return entidades.stream().map(CategoriaResponseDTO::new).toList();
     }
 
+    public CategoriaResponseDTO buscarPorId(Long idCategoria){
+        Categoria categoria = repository.findById(idCategoria)
+                .orElseThrow(() -> new EntityNotFoundException("Categoria não encontrada!"));
+        return new CategoriaResponseDTO(categoria);
+    }
+
     @Override
     public CategoriaResponseDTO salvar(CategoriaRequestDTO dto) {
         Categoria entidade = new Categoria();

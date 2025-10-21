@@ -2,6 +2,7 @@ package com.eryckavel.todolist.util;
 
 import com.eryckavel.todolist.model.Usuario;
 import com.eryckavel.todolist.repository.UsuarioRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,7 +16,8 @@ public class ServiceUtil {
         this.usuarioRepository = usuarioRepository;
     }
 
-    protected Usuario buscarUsuarioLogin(String token){
+    protected Usuario buscarUsuarioLogin(HttpServletRequest request){
+        String token = request.getHeader("Authorization").replace("Bearer ", "");
         return usuarioRepository.buscarPorLogin(jwtUtil.getUsernameFromToken(token)).get();
     }
 

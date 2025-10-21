@@ -26,6 +26,11 @@ public class CategoriaController {
         return ResponseEntity.ok(service.listar());
     }
 
+    @GetMapping("/buscar/{idCategoria}")
+    public ResponseEntity<CategoriaResponseDTO> buscarCategoriaPorId(@PathVariable("idCategoria") Long idCategoria){
+        return ResponseEntity.ok(service.buscarPorId(idCategoria));
+    }
+
     @PostMapping
     public ResponseEntity<CategoriaResponseDTO> salvarCategoria(@RequestBody CategoriaRequestDTO dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.salvar(dto));
