@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'todolist-api'
+    metrics_path: '/api/actuator/prometheus'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['todolist-app:9191']  # ← Use o nome exato do container
+        labels:
+          application: 'todolist'
+
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

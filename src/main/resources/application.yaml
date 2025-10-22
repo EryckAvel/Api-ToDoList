@@ -50,3 +50,15 @@ springdoc:
     tryItOutEnabled: true
 api:
   version: @project.version@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
