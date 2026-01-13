@@ -3,7 +3,13 @@ server:
   servlet:
     context-path: /api
 spring:
-  name: toDo-List
+  application:
+    name: toDo-List
+  data:
+    redis:
+      host: redis
+      port: 6379
+      password: ${REDIS_PASSWORD}
   datasource:
     url: ${SPRING_DATASOURCE_URL:url}
     username: ${SPRING_DATASOURCE_USERNAME:username}
@@ -58,7 +64,7 @@ management:
   endpoint:
     prometheus:
       enabled: true
-  metrics:
-    export:
-      prometheus:
+  prometheus:
+    metrics:
+      export:
         enabled: true
