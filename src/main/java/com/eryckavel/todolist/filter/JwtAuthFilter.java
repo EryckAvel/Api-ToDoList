@@ -23,7 +23,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final AuthService authService;
     private final JwtUtil jwtUtil;
-    private static final Logger logger = LoggerFactory.getLogger(JwtAuthFilter.class);
 
     public JwtAuthFilter(AuthService authService, JwtUtil jwtUtil) {
         this.authService = authService;
@@ -35,12 +34,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         final String authHeader = request.getHeader("Authorization");
         String username = null;
         String jwtToken = null;
-        // Verifica se o header existe e começa com "Bearer "
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
-        // Extrai o token e o username com tratamento de exceções
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             jwtToken = authHeader.substring(7);
             try {
@@ -53,7 +50,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 System.out.println("Erro ao processar token JWT: " + e.getMessage());
             }
         }
-        // Valida e autentica o usuário
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.authService.loadUserByUsername(username);
             if (jwtUtil.validarToken(jwtToken, userDetails)) {
