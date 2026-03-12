@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   redis:
     image: redis:7-alpine
@@ -21,8 +19,6 @@ services:
     image: ${DOCKERHUB_USERNAME}/todolist-api:latest
     container_name: todolist-app
     depends_on:
-      postgres:
-        condition: service_started
       redis:
         condition: service_healthy
     ports:
