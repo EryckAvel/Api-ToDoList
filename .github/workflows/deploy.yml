@@ -10,6 +10,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest #DEFINIÇÃO DE AMBIENTE PARA RODAR
+    environment: secrets
     steps:
       - name: Checkout código #VALIDAR CODIGO
         uses: actions/checkout@v3
