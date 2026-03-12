@@ -52,7 +52,7 @@ jobs:
             SPRING_DATASOURCE_PASSWORD=${{secrets.SPRING_DATASOURCE_PASSWORD}}
             REDIS_PASSWORD=${{secrets.REDIS_PASSWORD}}
             JWT_SECRET=${{secrets.JWT_SECRET}}
-            JWT_EXPIRATION=${{var.JWT_EXPIRATION}}
+            JWT_EXPIRATION=${{vars.JWT_EXPIRATION}}
             EOF
             # Pull da nova imagem e restart
             docker compose pull app
