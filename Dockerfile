@@ -1,4 +1,4 @@
-FROM maven:3.8.4-openjdk-17 AS build
+FROM eclipse-temurin:17-jre-alpine AS build
 
 COPY pom.xml /app/
 WORKDIR /app
