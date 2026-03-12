@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jre-alpine AS build
+FROM maven:3.9-eclipse-temurin-17 AS build
 
 COPY pom.xml /app/
 WORKDIR /app
@@ -6,7 +6,7 @@ WORKDIR /app
 COPY src /app/src
 RUN mvn clean package -B -DskipTests
 
-FROM openjdk:17-jdk-alpine
+FROM eclipse-temurin:17-jre-alpine
 
 COPY --from=build /app/target/*.jar /app/app.jar
 
