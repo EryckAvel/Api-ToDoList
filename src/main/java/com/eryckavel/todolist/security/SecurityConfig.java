@@ -33,7 +33,9 @@ public class SecurityConfig {
             "/actuator/health",
             "/todolist",
             "/todolist/**",
-            "/actuator/**"
+            "/actuator/**",
+            "/health",
+            "/health/**"
     };
 
 

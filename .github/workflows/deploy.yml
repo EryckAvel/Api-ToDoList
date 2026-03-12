@@ -1,0 +1,59 @@
+name: Deploy da API #NOME DO WORKFLOW
+
+#DEFINIÇÃO DE GATILHO PARA EXECUÇÃO DE WORKFLOW
+on:
+  push:
+    branches:
+      - main
+
+#TRABALHOS QUE SERÃO EXECUTADOS QUANDO O GATINHO FOR ATIVADO
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest #DEFINIÇÃO DE AMBIENTE PARA RODAR
+    steps:
+      - name: Checkout código #VALIDAR CODIGO
+        uses: actions/checkout@v3
+
+      - name: Login no Docker Hub #LOGIN COM O DOCKER HUB PARA PODER REALIZAR A SUBIDA DA IMAGEM
+        uses: docker/login-action@v3
+        with:
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_TOKEN}}
+
+      - name: Build e Push da imagem
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/todolist-api:latest
+
+      - name: Copiar arquivos para EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{secrets.EC2_HOST}}
+          username: ${{secrets.EC2_USER}}
+          key: ${{secrets.EC2_SSH_KEY}}
+          source: "docker-compose.yml,prometheus.yml"
+          target: "/home/${{ secrets.EC2_USER }}/todolist"
+
+      - name: Deploy no EC2
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{secrets.EC2_HOST}}
+          username: ${{secrets.EC2_USER}}
+          key: ${{secrets.EC2_SSH_KEY}}
+          script: |
+            cd /home/${{secrets.EC2_USER}}/todolist
+            
+            # Cria o .env com as variáveis de ambiente
+            cat > .env << EOF
+            SPRING_DATASOURCE_URL=${{secrets.SPRING_DATASOURCE_URL}}
+            SPRING_DATASOURCE_USERNAME=${{secrets.SPRING_DATASOURCE_USERNAME}}
+            SPRING_DATASOURCE_PASSWORD=${{secrets.SPRING_DATASOURCE_PASSWORD}}
+            REDIS_PASSWORD=${{secrets.REDIS_PASSWORD}}
+            JWT_SECRET=${{secrets.JWT_SECRET}}
+            JWT_EXPIRATION=${{var.JWT_EXPIRATION}}
+            EOF
+            # Pull da nova imagem e restart
+            docker compose pull app
+            docker compose up -d --force-recreate
