@@ -57,5 +57,5 @@ jobs:
             JWT_EXPIRATION=${{vars.JWT_EXPIRATION}}
             EOF
             # Pull da nova imagem e restart
-            docker-compose pull app
-            docker-compose up -d --force-recreate
+            sudo docker-compose pull app
+            sudo docker-compose up -d --force-recreate
